@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- Q.55 Form Validation for Email, Number, and Password -->
+     <form id="userForm" onsubmit="return validateForm()">
+        Email: <input type="email" id="email" required><br>
+        Phone Number: <input type="number" id="phone" required><br>
+        Password: <input type="password" id="password" required><br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+    function validateForm() {
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phone").value;
+        let password = document.getElementById("password").value;
+    
+        if (!email.includes("@")) {
+            alert("Invalid email format");
+            return false;
+        }
+        if (phone.length < 10 || phone.length > 15) {
+            alert("Phone number must be between 10 and 15 digits.");
+            return false;
+        }
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters.");
+            return false;
+        }
+        return true;
+    }
+    </script>
+</body>
+</html>

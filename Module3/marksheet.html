@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet information technology</title>
+</head>
+<style>
+    .container {
+        border: 2px solid black;
+        margin: auto;
+        width: 50%;
+        height: 700px;
+        background-color: antiquewhite;
+    }
+
+    h2 {
+        margin-left: 20%;
+    }
+
+    div.text {
+        margin-left: 40%;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    div.item {
+        margin-left: 30px;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    input {
+        margin-left: 50px;
+        margin: 15px;
+        width: 250px;
+        padding: 5px;
+    }
+
+    .btn {
+        margin-left: 30%;
+        width: 80px;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+        background-color: aquamarine;
+        color: black;
+
+    }
+
+    .last {
+        display: flex;
+    }
+
+    p {
+        margin-left: 100px;
+        margin-top: 50px;
+        font-weight: 600;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2>Marksheet for information technology</h2>
+        <div class="text">Enter Marks</div>
+        <div class="item">
+
+            1.C language <input type="text" id="clanguage" required placeholder="marks is not greater than 50"
+                style="margin-left: 100px;"><br>
+
+            2.C++ language <input type="text" name="" id="c++language" placeholder="marks is not greater than 50"
+                style="margin-left: 80px;" required><br>
+
+            3.Database <input type="text" name="" id="database" placeholder="marks is not greater than 50"
+                style="margin-left: 110px;" required><br>
+
+            4.HTML <input type="text" name="" id="html" placeholder="marks is not greater than 50"
+                style="margin-left: 125px;" required><br>
+
+            5.CSS <input type="text" name="" id="css" placeholder="marks is not greater than 50"
+                style="margin-left: 144px;" required><br>
+
+            6.PHP <input type="text" name="" id="php" placeholder="marks is not greater than 50"
+                style="margin-left: 140px;" required><br>
+
+            7.Core java <input type="text" name="" id="corejava" placeholder="marks is not greater than 50"
+                style="margin-left: 105px;" required><br>
+
+        </div>
+
+        <button class="btn" onclick="result()">Results</button>
+
+        <div class="last">
+
+            <p>Total is : <span id="totals"></span></p>
+            <p>Percentage is : <span id="percent"></span></p>
+        </div>
+    </div>
+    <script>
+        function result() {
+
+            let one = document.getElementById("clanguage").value;
+            let two = document.getElementById("c++language").value;
+            let three = document.getElementById("database").value;
+            let four = document.getElementById("html").value;
+            let five = document.getElementById("css").value;
+            let six = document.getElementById("php").value;
+            let seven = document.getElementById("corejava").value;
+
+            let total = parseInt(one) + parseInt(two) + parseInt(three) + parseInt(four) + parseInt(five) + parseInt(six) + parseInt(seven);
+            if (total <= 350) {
+                document.getElementById("totals").innerHTML = total + "/350";
+            }
+            else {
+                document.getElementById("totals").innerHTML = "enter valid marks";
+            }
+
+            let Percentage = total / 350 * 100;
+            let final = Math.ceil(Percentage);
+            if (total <= 350) {
+                document.getElementById("percent").innerHTML = final + "%";
+            } else {
+                document.getElementById("percent").innerHTML = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

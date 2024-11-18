@@ -1,0 +1,147 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sample Form with Validation</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+
+            .container {
+                width: 30%;
+                margin: auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+
+            .form-group input:focus {
+                border-color: #4CAF50;
+            }
+
+            .error {
+                color: red;
+                font-size: 14px;
+                display: none;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h2>SIGN UP</h2>
+            <form id="myForm" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="name">Username :</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+                    <span class="error" id="nameError">username must be between 3 and 25 character.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <span class="error" id="emailError">Please enter a valid email address.</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                    <span class="error" id="passwordError">Password must be at least 8 characters long.</span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Reenter password again ">
+                    <span class="error" id="passwordError">please enter password again.</span>
+                </div>
+
+                <button type="submit">SIGN UP</button>
+            </form>
+        </div>
+
+        <script>
+            function validateForm() {
+                // Clear previous errors
+                const errors = document.querySelectorAll('.error');
+                errors.forEach(error => error.style.display = 'none');
+
+                let isValid = true;
+
+                // Name validation: Only letters allowed
+                const name = document.getElementById('name').value;
+                const nameError = document.getElementById('nameError');
+                const namePattern = /^[A-Za-z\s]+$/;
+                if (!name || !namePattern.test(name)) {
+                    nameError.style.display = 'block';
+                    isValid = false;
+                }
+
+                // Email validation
+                const email = document.getElementById('email').value;
+                const emailError = document.getElementById('emailError');
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!email || !emailPattern.test(email)) {
+                    emailError.style.display = 'block';
+                    isValid = false;
+                }
+
+                // Password validation: At least 8 characters
+                const password = document.getElementById('password').value;
+                const passwordError = document.getElementById('passwordError');
+                if (password.length < 8) {
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                }
+
+                return isValid; // If any validation fails, prevent form submission
+            }
+        </script>
+
+    </body>
+
+    </html>

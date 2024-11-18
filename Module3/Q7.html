@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!---7. WAP to convert years into days and days into years?-->
+    <script>
+        let getvalue = prompt("Enter the number of days")
+        let numOfweek = 7;
+        function find(numOfDays) {
+            let year = parseInt(numOfDays / 365);
+            let week = (parseInt((numOfDays % 365) / numOfweek));
+            let days = ((numOfDays % 365) % numOfweek);
+
+            document.write("year = " + year + "<br/>");
+            document.write("week = " + week + "<br/>");
+            document.write("days = " + days + "<br/>");
+
+        }
+        let numOfDays = getvalue;
+        find(numOfDays);
+
+    </script>
+</body>
+
+</html>

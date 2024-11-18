@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- Q.27 Write a program to find the summation of the first and last digits (e.g., 1234 → sum = 5): -->
+     <script>
+        function sumFirstLastDigit(num) {
+           let strNum = num.toString();
+           let firstDigit = parseInt(strNum[0]);
+           let lastDigit = parseInt(strNum[strNum.length - 1]);
+           return firstDigit + lastDigit;
+       }
+       
+       console.log(sumFirstLastDigit(1234)); // Output: 5
+       </script>
+</body>
+</html>

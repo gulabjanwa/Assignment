@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(211, 229, 236);
+    }
+
+    .container {
+        border-radius: 5px;
+        border: 3px solid black;
+        height: auto;
+        width: 50%;
+        margin: auto;
+    }
+
+    button {
+        background-color: rgb(128, 193, 128);
+        border-radius: 5px;
+        color: rgb(7, 7, 7);
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    .first-box,
+    .second-box {
+        margin-top: 30px;
+        margin-left: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    input {
+        padding: 5px;
+        font-size: 15px;
+        border-radius: 5px;
+        width: 50%;
+    }
+
+    .result-box {
+        margin-left: 20px;
+    }
+
+    #firstnum,
+    #secondnum {
+        margin-left: 10px;
+        height: 20px;
+    }
+
+    button {
+        font-size: 25px;
+        height: 50px;
+        width: 50px;
+    }
+
+    h2 {
+        margin-top: 30px;
+    }
+
+    h2.text {
+        margin-left: 40%;
+
+    }
+
+    span {
+        margin-left: 20px
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2 class="text">Maths operation</h2>
+        <div class="first-box">
+            Enter 1st number : <input id="firstnum"><br>
+        </div>
+        <div class="second-box">
+            Enter 2nd number :<input id="secondnum"><br><br>
+        </div>
+        <button onclick="add()">+</button>
+        <button onclick="sub()">-</button>
+        <button onclick="multi()">*</button>
+        <button onclick="div()">/</button>
+        <div class="result-box">
+            <h2> Answer : <span id="result">
+                    <span>
+            </h2>
+        </div>
+
+    </div>
+    <script>
+        function add() {
+            let a = document.getElementById("firstnum").value;
+            let b = document.getElementById("secondnum").value;
+            let tot = parseInt(a) + parseInt(b);
+            document.getElementById("result").innerHTML = tot;
+        }
+        function sub() {
+            let a = document.getElementById("firstnum").value;
+            let b = document.getElementById("secondnum").value;
+            let tot = a - b;
+            document.getElementById("result").innerHTML = tot;
+        }
+        function multi() {
+            let a = document.getElementById("firstnum").value;
+            let b = document.getElementById("secondnum").value;
+            let tot = a * b;
+            document.getElementById("result").innerHTML = tot;
+        }
+        function div() {
+            let a = document.getElementById("firstnum").value;
+            let b = document.getElementById("secondnum").value;
+            let tot = a / b;
+            document.getElementById("result").innerHTML = tot;
+        }
+
+
+    </script>
+    </div>
+
+</body>
+
+</html>

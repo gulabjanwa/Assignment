@@ -1,0 +1,245 @@
+LAB EXERCISE
+• Task 1:
+• Create a React component that renders a list of items (e.g., a list of fruit names).
+Usethe map()function to render each item in the list.
+
+==>
+import React from 'react';
+
+export default function FruitList() {
+  const fruits = ['Apple', 'Banana', 'Mango', 'Pineapple'];
+
+  return (
+    <div>
+      <h2>Fruit List</h2>
+      <ul>
+        {fruits.map((fruit, index) => (
+          <li key={index}>{fruit}</li> // Using index as fallback (not recommended for dynamic lists)
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+• Task 2:
+• Create a list of users where each user has a unique id. Render the user list
+usingReact and assign a unique keyto each user.
+
+==>
+import React from 'react';
+
+export default function UserList() {
+  const users = [
+    { id: 1, name: 'Alice' },
+    { id: 2, name: 'Bob' },
+    { id: 3, name: 'Charlie' }
+  ];
+
+  return (
+    <div>
+      <h2>User List</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.name}</li> 
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LAB EXERCISE
+• Task 1:
+• Create a form with inputs for name, email, and password. Use state to control the
+form and display the form data when the user submits it.
+
+==>
+import React, { useState } from 'react';
+
+export default function SignupForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Name: ${formData.name}\nEmail: ${formData.email}\nPassword: ${formData.password}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Signup Form</h2>
+
+      <div>
+        <label>Name:</label>
+        <input name="name" value={formData.name} onChange={handleChange} required />
+      </div>
+
+      <div>
+        <label>Email:</label>
+        <input name="email" value={formData.email} onChange={handleChange} required />
+      </div>
+
+      <div>
+        <label>Password:</label>
+        <input name="password" type="password" value={formData.password} onChange={handleChange} required />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+• Task 2:
+• Add validation to the form created above. For example, ensure that the emailinput
+contains a valid email address.
+==>
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(formData.email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  alert(`Name: ${formData.name}\nEmail: ${formData.email}\nPassword: ${formData.password}`);
+};
+
+----------------------------------------------------------------------------------------------------------------------------------------
+• Task 1:
+• Create a functional component with a counter using the useState()hook. Include
+buttons to increment and decrement the counter.
+
+==>
+import React, { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count - 1)}>-</button>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+• Task 2:
+• Use the useEffect()hook to fetch and display data from an API when the
+component mounts.
+
+==>
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+export default function FetchData() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/users');
+      setUsers(res.data);
+    }
+    fetchUsers();
+  }, []);
+
+  return (
+    <div>
+      <h2>Users</h2>
+      <ul>
+        {users.map((u) => <li key={u.id}>{u.name}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+• Task 3:
+• Create react app with use of useSelector & useDispatch. 
+
+==>
+store.js
+-->
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: { value: 0 },
+  reducers: {
+    increment: state => { state.value += 1 },
+    decrement: state => { state.value -= 1 },
+  }
+});
+
+export const { increment, decrement } = counterSlice.actions;
+
+const store = configureStore({ reducer: { counter: counterSlice.reducer } });
+export default store;
+
+App.js-->
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './store';
+import { Provider } from 'react-redux';
+import store from './store';
+
+function CounterApp() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h2>Redux Count: {count}</h2>
+      <button onClick={() => dispatch(decrement())}>-</button>
+      <button onClick={() => dispatch(increment())}>+</button>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <CounterApp />
+    </Provider>
+  );
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------
+• Task 4:
+• Create react app to avoid re-renders in react application by useRef ?
+
+==>
+import React, { useRef, useState } from 'react';
+
+export default function NoRerenderRef() {
+  const renderCount = useRef(0);
+  const [input, setInput] = useState('');
+
+  renderCount.current += 1;
+
+  return (
+    <div>
+      <h2>Render Count: {renderCount.current}</h2>
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
+    </div>
+  );
+}
+

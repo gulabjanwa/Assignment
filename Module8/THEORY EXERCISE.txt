@@ -1,0 +1,36 @@
+THEORY EXERCISE
+
+
+• Question 1: What is Redux, and why is it used in React applications? Explain the
+coreconcepts of actions, reducers, and the store.
+ANS:Redux is a predictable state container for JavaScript apps — commonly used with React to manage global state across the application.
+
+✅ Why Redux?
+Solves prop drilling (passing props through many components)
+
+Centralizes state in a single store
+
+Makes state changes predictable using pure functions.
+
+| Concept      | Description                                                                  |
+| ------------ | ---------------------------------------------------------------------------- |
+| **Store**    | Centralized state container holding the application state                    |
+| **Action**   | Plain JS object with `type` and optional `payload` to describe what happened |
+| **Reducer**  | A function that takes current state and action, and returns new state        |
+| **Dispatch** | Method to send actions to reducers                                           |
+| **Selector** | Used to read specific state from the store                                   |
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+• Question 2: How does Recoil simplify state management in React compared to Redux?
+ANS:Recoil is a state management library for React built by Facebook. It’s more declarative and intuitive, and integrates better with React’s hooks-based ecosystem.
+| Feature        | Redux                                    | Recoil                                      |
+| -------------- | ---------------------------------------- | ------------------------------------------- |
+| Setup          | Requires boilerplate (actions, reducers) | Minimal setup using `atoms` and `selectors` |
+| Learning curve | Higher                                   | Lower                                       |
+| React native   | External                                 | Built directly for React                    |
+| Global/local   | Mostly global                            | Handles global + local state well           |
+

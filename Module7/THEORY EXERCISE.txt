@@ -1,0 +1,97 @@
+THEORY EXERCISE
+
+• Question 1: What do you mean by RESTful web services?
+ANS:RESTful Web Services are APIs that follow REST (Representational State Transfer) principles. They allow communication between client and server over HTTP using standardized methods.
+
+✅ Key HTTP Methods:
+
+GET – Retrieve data
+
+POST – Send new data
+
+PUT – Update existing data completely
+
+PATCH – Update data partially
+
+DELETE – Delete data
+
+✅ Example:GET /users         → Fetch users
+POST /users        → Add a user
+PUT /users/1       → Replace user #1
+PATCH /users/1     → Update part of user #1
+DELETE /users/1    → Remove user #1
+
+
+---------------------------------------------------------------------------------------------------------------
+
+• Question 2: What is Json-Server? How we use in React ?
+ANS:JSON Server is a tool that lets you create a fake REST API using a simple db.json file.
+
+✅ Use Cases:
+
+Mock API for frontend development
+
+Prototyping CRUD operations
+
+--------------------------------------------------------------------------------------------------------------
+
+• Question 3: How do you fetch data from a Json-server API in React? Explain the role of
+fetch() or axios()in making API requests
+ANS:You use fetch() or axios to make HTTP requests from your React components.
+
+  ✅ Using fetch():
+   useEffect(() => {
+  fetch('http://localhost:3001/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+}, []);
+
+✅ Using axios:
+import axios from 'axios';
+
+useEffect(() => {
+  axios.get('http://localhost:3001/users')
+    .then(res => setUsers(res.data));
+}, []);
+
+
+-----------------------------------------------------------------------------------------------------------------------
+• Question 4: What is Firebase? What features does Firebase offer?
+ANS:Firebase is a platform by Google for building web and mobile apps.
+
+✅ Main Features:
+
+Authentication (email/password, Google, GitHub, etc.)
+
+Firestore (NoSQL real-time database)
+
+Firebase Hosting
+
+Cloud Functions
+
+Storage (for files, images)
+
+Analytics
+
+------------------------------------------------------------------------------------------------------------------------------
+
+• Question 5: Discuss the importance of handling errors and loading states when
+working withAPIs in React
+ANS:Handling errors and loading ensures:
+
+Good user experience
+
+Graceful failure handling
+
+Visual feedback for loading/waiting
+
+Avoids app crashes
+
+✅ Common states:
+
+Loading – Show spinner while waiting
+
+Error – Display fallback/error message
+
+Success – Show the data
+

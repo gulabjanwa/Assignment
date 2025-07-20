@@ -1,0 +1,159 @@
+LAB EXERCISE
+• Task 1:
+• Create a React component that fetches data from a public API (e.g., a list of
+users)and displays it in a table format.
+• Create a React app with Json-server and use Get , Post , Put , Delete & patch
+method on Json-server API. 
+
+===>import React, { useEffect, useState } from 'react';
+
+export default function UserTable() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+
+  return (
+    <table border="1">
+      <thead>
+        <tr><th>Name</th><th>Email</th></tr>
+      </thead>
+      <tbody>
+        {users.map(user => (
+          <tr key={user.id}><td>{user.name}</td><td>{user.email}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+
+=====>
+• Create a React app with Json-server and use Get , Post , Put , Delete & patch
+method on Json-server API. 
+
+=> Create db.json:{
+  "users": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" }
+  ]
+}
+
+Example axios CRUD in React:import axios from 'axios';
+
+// GET
+axios.get('http://localhost:3001/users');
+
+// POST
+axios.post('http://localhost:3001/users', {
+  name: 'New User', email: 'new@example.com'
+});
+
+// PUT
+axios.put('http://localhost:3001/users/1', {
+  name: 'Updated Name', email: 'updated@example.com'
+});
+
+// PATCH
+axios.patch('http://localhost:3001/users/1', {
+  name: 'Partially Updated Name'
+});
+
+// DELETE
+axios.delete('http://localhost:3001/users/1');
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+• Task 2:
+• Create a React app crud and Authentication with firebase API.
+• Implement google Authentication with firebase API.
+
+==>
+firebaseConfig.js:import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  // ... rest of config
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
+
+
+Google Login Example:import React from 'react';
+import { auth, googleProvider } from './firebaseConfig';
+import { signInWithPopup, signOut } from 'firebase/auth';
+
+export default function FirebaseLogin() {
+  const handleLogin = () => {
+    signInWithPopup(auth, googleProvider)
+      .then(res => alert(`Welcome ${res.user.displayName}`))
+      .catch(err => alert(err.message));
+  };
+
+  const handleLogout = () => {
+    signOut(auth);
+  };
+
+  return (
+    <div>
+      <button onClick={handleLogin}>Login with Google</button>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  );
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+• Task 3:
+• Implement error handling and loading states for the API call. Display a
+loadingspinner while the data is being fetched.
+
+==>
+import React, { useState, useEffect } from 'react';
+
+export default function DataFetcher() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch data");
+        return res.json();
+      })
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Loading spinner...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return (
+    <ul>
+      {data.slice(0, 5).map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+
